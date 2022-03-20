@@ -11,13 +11,18 @@ Demonstration app of executing TypeScript in Deno from inside a Docker container
 * Your flavor of Linux probably works; this is tested on [Ubuntu 20.04.3 LTS](https://www.microsoft.com/store/productId/9NBLGGH4MSV6)
 * [Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 * VS Code 
-* [Deno VS Code Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
+* Deno
+* [Deno VS Code Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno) (requires `deno.exe` to be in path)
 
 ## To Use
 
 * Clone the repository, open the folder in VS Code, attach a breakpoint in `main.ts`, hit F5. The Docker image will build and then the code will execute in Deno, hitting your breakpoint.
 * CTRL+P, type `task bundle` to run the bundle task, see the result in `out/main.bundle.js`.
 * Open `index.html` in a browser to witness the bundled code running there (must run through a server, ES modules do not support `file://`, try the VS Code extension Live Server).
+
+## Known Issues
+
+* You still need Deno installed on Windows host because the the VS Code extension, and thus the debugger, requires it. There may be some way to set `deno.path` in `.vscode/settings.json` to invoke `wsl.exe docker`, but I haven't been able to figure it out. For this trivial example, we're not really saving anything, but for more complicated toolchains we can still improve our lives with this technique. 
 
 ## File by File
 
