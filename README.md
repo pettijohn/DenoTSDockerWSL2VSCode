@@ -17,6 +17,7 @@ Demonstration app of executing TypeScript in Deno from inside a Docker container
 
 * Clone the repository, open the folder in VS Code, attach a breakpoint in `main.ts`, hit F5. The Docker image will build and then the code will execute in Deno, hitting your breakpoint.
 * CTRL+P, type `task bundle` to run the bundle task, see the result in `out/main.bundle.js`.
+* Open `index.html` in a browser to witness the bundled code running there (must run through a server, ES modules do not support `file://`, try the VS Code extension Live Server).
 
 ## File by File
 
