@@ -13,6 +13,11 @@ Demonstration app of executing TypeScript in Deno from inside a Docker container
 * VS Code 
 * [Deno VS Code Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
 
+## To Use
+
+* Clone the repository, open the folder in VS Code, attach a breakpoint in `main.ts`, hit F5. The Docker image will build and then the code will execute in Deno, hitting your breakpoint.
+* CTRL+P, type `task bundle` to run the bundle task, see the result in `out/main.bundle.js`.
+
 ## File by File
 
 * `Dockerfile` - Holds all compiler toolchain dependencies in a Docker image. Built on `denoland/deno` and exposes the debugging port `9229`. Every time we run a toolchain command, we ask Docker to do it via WSL2 and map `./` from the host Windows OS to `/code` in the container. We do not copy everything into the build context, rather, the container operates on our live filesystem (we're trying to emulate having `deno` installed locally but with the beauty of all dependencies in a container). By tagging this image as `deno` the commands feel relatively natural (e.g. `docker run deno bundle <foo>`). 
