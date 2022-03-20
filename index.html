@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="message"></div>
+        <script type="module">
+            import { getMessage } from "./out/main.bundle.js";
+
+            document.getElementById("message").innerText = getMessage();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "Launch and Attach Deno",
+            "preLaunchTask": "Build Docker Image",
+            "type": "node",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "wsl.exe",
+            "runtimeArgs": [
+                "-e",
+                "sh",
+                "-c",
+                "docker run -v=${PWD}:/code -p=9229:9229 deno run -A --inspect-brk=0.0.0.0:9229 main.ts"
+            ],
+            "remoteRoot": "/code",
+            "localRoot": "${workspaceFolder}",
+            "sourceMapPathOverrides": {
+                "file:///code/*": "${workspaceFolder}/*",
+            },
+            "sourceMaps": true,
+            "attachSimplePort": 9229,
+            "autoAttachChildProcesses": true,
+            "stopOnEntry": false,
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/**",
+            ]
+        }
+    ]
+}
