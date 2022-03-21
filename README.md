@@ -23,6 +23,7 @@ Demonstration app of executing TypeScript in Deno from inside a Docker container
 ## Known Issues
 
 * You still need Deno installed on Windows host because the the VS Code extension, and thus the debugger, requires it. There may be some way to set `deno.path` in `.vscode/settings.json` to invoke `wsl.exe docker`, but I haven't been able to figure it out. For this trivial example, we're not really saving anything, but for more complicated toolchains we can still improve our lives with this technique. 
+* This would probably be quite a bit easier on Mac since `docker` will be in path, rather than having to invoke it through `wsl.exe`.
 
 ## File by File
 
