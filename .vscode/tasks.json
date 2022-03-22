@@ -4,36 +4,40 @@
         {
             "label": "Build Docker Image",
             "type": "shell",
-            "command": "docker build -t deno .",
-            "problemMatcher": [
-                "$deno" // This is wrong but is there a Docker option? 
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "options": {
-                "shell": {
-                    "executable": "wsl.exe"
-                }
+            "linux": 
+            {
+                "command": "docker",
+                "args": [
+                    "build",
+                    "-t",
+                    "deno",
+                    "."
+                ]
             }
         },
         {
             "label": "Bundle JavaScript",
             "dependsOn": [ "Build Docker Image" ],
             "type": "shell",
-            "command": "docker run -it -v=${PWD}:/code deno bundle main.ts out/main.bundle.js",
+            "linux": 
+            {
+                "command": "docker",
+                "args": [
+                    "run",
+                    "-it",
+                    "-v=${workspaceFolder}:/app",
+                    "deno",
+                    "bundle",
+                    "main.ts",
+                    "out/main.bundle.js"
+                ]
+            },
             "problemMatcher": [
                 "$deno"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "options": {
-                "shell": {
-                    "executable": "wsl.exe"
-                }
             }
         }
     ]

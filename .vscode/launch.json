@@ -10,20 +10,33 @@
             "preLaunchTask": "Build Docker Image",
             "type": "node",
             "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "wsl.exe",
-            "runtimeArgs": [
-                "-e",
-                "sh",
-                "-c",
-                "docker run -v=${PWD}:/code -p=9229:9229 deno run -A --inspect-brk=0.0.0.0:9229 main.ts"
-            ],
-            "remoteRoot": "/code",
+            "linux": {
+                "attachSimplePort": 9229,
+                "runtimeExecutable": "docker",
+                "runtimeArgs": [
+                    "run",
+                    "-v=${workspaceFolder}:/app",
+                    "-p=9229:9229",
+                    "deno",
+                    "run",
+                    "-A",
+                    "--inspect-brk=0.0.0.0:9229",
+                    "main.ts"
+                ]
+            },
+            // "runtimeExecutable": "wsl.exe",
+            // "runtimeArgs": [
+            //     "-e",
+            //     "sh",
+            //     "-c",
+            //     "docker run -v=${PWD}:/code -p=9229:9229 deno run -A --inspect-brk=0.0.0.0:9229 main.ts"
+            // ],
+            "remoteRoot": "/app",
             "localRoot": "${workspaceFolder}",
             "sourceMapPathOverrides": {
                 "file:///code/*": "${workspaceFolder}/*",
             },
             "sourceMaps": true,
-            "attachSimplePort": 9229,
             "autoAttachChildProcesses": true,
             "stopOnEntry": false,
             "resolveSourceMapLocations": [
